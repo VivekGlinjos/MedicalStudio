@@ -1,0 +1,87 @@
+            .image-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 50px;
+            }
+            .testi-grid {
+                grid-template-columns: 1fr;
+            }
+            .cta-bottom-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+            .cta-bottom h2 {
+                max-width: 100%;
+            }
+            .bottom-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+{{-- ============================================================
+     ANNOUNCEMENT BAR
+     ============================================================ --}}
+<div class="announce-bar">
+    <a href="tel:+919747500002"><i class="fa-solid fa-phone-volume" style="font-size:.65rem;"></i> +91 97475 00002</a>
+    <span class="sep">|</span>
+    <a href="tel:+919747500003">+91 97475 00003</a>
+    <span class="sep">|</span>
+    <a href="mailto:info@medicalstudio.in"><i class="fa-solid fa-envelope" style="font-size:.65rem;"></i> info@medicalstudio.in</a>
+    <span class="sep">|</span>
+    <span><i class="fa-regular fa-clock" style="font-size:.65rem;"></i> Mon – Sat: 9:30 AM – 5:30 PM</span>
+</div>
+
+{{-- ============================================================
+     NAVBAR — NZ TRAVEL TEMPLATE STYLE
+     Brand left | Links center | Actions right
+     Active link: teal underline (NZ red underline)
+     ============================================================ --}}
+<nav class="navbar" id="mainNavbar" x-data="{ open: false }">
+    <div class="navbar-inner">
+
+        {{-- BRAND + LOGO --}}
+        <a href="{{ route('home') }}" class="nav-brand">
+            <img src="{{ asset('images/logo.png') }}"
+                 alt="Medical Studio"
+                 class="nav-logo-img"
+                 onerror="this.style.display='none'">
+            <span class="nav-brand-text">
+                <span class="ms-teal">MEDICAL</span><span class="ms-dark">
+            <a href="{{ route('counselling.show', 'inicet') }}">AIIMS PG</a>
+        </div>
+
+        <button class="nav-mobile-link" @click="r = !r">
+            Resources <i class="fa-solid" :class="r ? 'fa-chevron-up' : 'fa-chevron-down'" style="font-size:.7rem;"></i>
+        </button>
+        <div class="nav-mobile-sub" x-show="r" x-transition>
+            <a href="{{ route('institutes') }}">Institutes</a>
+            <a href="{{ route('seat-predictor') }}">Seat Predictor</a>
+            <a href="{{ route('features') }}">All Tools</a>
+        </div>
+
+        <a href="{{ route('blog') }}" class="nav-mobile-link">Blog</a>
+        <a href="{{ route('packages') }}" class="nav-mobile-link">Packages</a>
+
+        <button class="nav-mobile-link" @click="co = !co">
+            Company <i class="fa-solid" :class="co ? 'fa-chevron-up' : 'fa-chevron-down'" style="font-size:.7rem;"></i>
+        </button>
+        <div class="nav-mobile-sub" x-show="co" x-transition>
+            <a href="{{ route('about') }}">About Us</a>
+            <a href="{{ route('success-stories') }}">Success Stories</a>
+            <a href="{{ route('contact') }}">Contact Us</a>
+        </div>
+
+        <div style="display:flex;gap:.75rem;margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--border-d);">
+            @auth
+                <a href="{{ route('dashboard') }}" class="btn btn-teal btn-sm" style="flex:1;justify-content:center;">Dashboard</a>
+            @else
+                <a href="{{ route('login') }}" class="btn btn-outline btn-sm" style="flex:1;justify-content:center;">Login</a>
+                <a href="{{ route('register') }}" class="btn btn-teal btn-sm" style="flex:1;justify-content:center;">Get Started</a>
+            @endauth
+        </div>
+    </div>
+</nav>
