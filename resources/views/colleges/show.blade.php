@@ -134,8 +134,22 @@
 
                         @if($college->college_fees)
                         <div style="background: var(--bg-soft); padding: 1rem; border-radius: 8px; border: 1px solid var(--border);">
-                            <span style="color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 0.25rem;">College Fees</span>
+                            <span style="color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 0.25rem;">Govt / Merit Fee</span>
                             <span style="font-size: 1.1rem; font-weight: 700; color: var(--ink);">{{ $college->college_fees }}</span>
+                        </div>
+                        @endif
+
+                        @if($college->management_fee)
+                        <div style="background: var(--bg-soft); padding: 1rem; border-radius: 8px; border: 1px solid var(--border);">
+                            <span style="color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 0.25rem;">Management Fee</span>
+                            <span style="font-size: 1.1rem; font-weight: 700; color: var(--ink);">{{ $college->management_fee }}</span>
+                        </div>
+                        @endif
+
+                        @if($college->nri_fee)
+                        <div style="background: var(--bg-soft); padding: 1rem; border-radius: 8px; border: 1px solid var(--border);">
+                            <span style="color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 0.25rem;">NRI Fee</span>
+                            <span style="font-size: 1.1rem; font-weight: 700; color: var(--ink);">{{ $college->nri_fee }}</span>
                         </div>
                         @endif
 

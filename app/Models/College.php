@@ -43,10 +43,19 @@ class College extends Model
             return asset($fallback);
         }
 
-        // Legacy bare filename – look in the extracted ZIP directory
-        $legacyPath = 'college-images/image/' . $value;
-        if (Storage::disk('public')->exists($legacyPath)) {
-            return asset('storage/' . $legacyPath);
+        // Legacy bare filename – look in the extracted directory, testing multiple common extensions
+        $baseName = pathinfo($value, PATHINFO_FILENAME);
+        $extensions = array_unique(array_filter([pathinfo($value, PATHINFO_EXTENSION), 'webp', 'jpg', 'jpeg', 'png']));
+        
+        foreach ($extensions as $ext) {
+            $legacyPath = 'college-images/image/' . $baseName . '.' . $ext;
+            if (Storage::disk('public')->exists($legacyPath)) {
+                return asset('storage/' . $legacyPath);
+            }
+            $rootPath = 'colleges/' . $baseName . '.' . $ext;
+            if (Storage::disk('public')->exists($rootPath)) {
+                return asset('storage/' . $rootPath);
+            }
         }
 
         return asset($fallback);
@@ -101,6 +110,8 @@ class College extends Model
         'total_seats',
         'hospital_beds',
         'college_fees',
+        'management_fee',
+        'nri_fee',
         'website_link',
         'remarks',
         'general_rank',
